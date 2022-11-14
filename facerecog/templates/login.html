@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+
+
+
+
+
+<form action="" method="POST">
+  {% csrf_token %}
+    <div class="container">
+      <div id="mdb-preloader" class="flex-center">
+        <div id="preloader-markup"></div>
+      </div>
+                <div class="col-sm-12" style="margin-top: 110px;padding-top: 10px;">
+             <div class="card mx-auto border-warning rounded" style="padding: 27pt; height: fit-content; width: fit-content;border-radius: 0.5rem;">
+        <center><img src="{% static 'img/login.png'%} " height="100" width="100" ><br>
+          <h2>Log in</h2>
+        </center>
+
+                <input type="text" id="email" class="form-control " name="email" placeholder="Enter Your Email" required>
+                <br><br>
+        
+                <input type="password" id="password" class="form-control " name="password" placeholder="Enter Your Password" required><br>
+                          
+                <center> <div class="form-group" >
+            
+              <input type="submit" style="background-color: #f7c60b;align:center" id="submit" class="btn btn-lg" name="submit" value="Login"><br>
+             <!--<input type="submit" style="background-color: #151517"class="btn btn-md" value="Sign in" name="submit">-->
+             <h5 style="text-align:center;padding-top:30px">Don't have an account?<a href=>Sign up</a></h5>
+            </div></center>
+      </div>
+    </div>
+    </div>
+</form>
+<!--
+<div class="container emp-profile pb-3">
+    <form method="POST" action="." class="needs-validation" enctype='multipart/form-data'>
+        {% csrf_token %}
+        <div class="container mb-4">
+            <center>
+            <label for="uname" muted><b>Username</b></label>
+            <input type="text" class="form-control" placeholder="Enter Username" name="uname" required>
+      
+            <label for="psw"><b>Password</b></label>
+            <input type="password" class="form-control" placeholder="Enter Password" name="psw" required>
+      
+            <button type="submit" class="btn btn-outline-success m-1">Login</button>
+            <label>
+              <input type="checkbox" checked="checked" name="remember"> Remember me
+            </label></center>
+          </div>
+        
+    </form>
+</div>
+-->
+
+
+
+{% endblock content %}

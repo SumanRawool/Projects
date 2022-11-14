@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container emp-profile">
+{% csrf_token %}
+    <div class="row">
+        <div class="col-md-3">
+            <img src="{% static 'img/FaceRec.png'%}" alt="" width="50%">
+            <h6 class="text-muted p-1"> Fac-Recog Sys</h6>
+
+        </div>
+        <div class="col-md-6">
+            <div class="profile-head">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <a target="_blank" class="scan" href=""><input type="submit" class="profile-edit-btn m-2"
+                    name="btnAddMore" value="Run Scanner" /></a>
+            <a  href=""><input type="submit" class="profile-edit-btn m-2 "
+                        name="btnAddMore" value="Profiles" /></a>
+        </div>
+    </div>
+
+    
+    <hr>
+    <div class="row">
+        <div class="col-md-3 emp-profile ">
+            <div class="bg-light emp-profile" >
+                <img src="{% static 'img/registratio.png'%}" class="rounded mx-auto d-block" alt="" width="50%" >
+               <center> <br><h5 class="text-muted p-1 center"> Add Student</h5>
+            </div>
+        </div>
+        <div class="col-md-3 emp-profile" >
+            <div class="bg-light emp-profile" >
+                <img src="{% static 'img/teacher2.png'%}" class="rounded mx-auto d-block" alt="" width="50%" >
+                <center> <br><h5 class="text-muted p-1 center"> Add Teacher</h5>
+            </div>
+        </div>
+        <div class="col-md-3 emp-profile -dark-2">
+            <div class="bg-light emp-profile " >
+                <img src="{% static 'img/details.png'%}" class="rounded mx-auto d-block" alt="" width="50%" >
+                <center> <br><h5 class="text-muted p-1 center"> View Details</h5>
+            </div>
+        </div>
+        <div class="col-md-3 emp-profile">
+            <div class="bg-light emp-profile" >
+                <img src="{% static 'img/attendance.png'%}" class="rounded mx-auto d-block" alt="" width="50%" >
+                <center> <br><h5 class="text-muted p-1 center"> View Attendance</h5>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+<!--
+<div class="container mt-10" style="margin-top=100">
+<div class="row align-items-center" style="margin-top:290 ; width=74"">
+    <div class="col rounded-3 " >
+        
+     <div class="p-3  border bg-light" ><img src="{% static 'img/registratio.png'%}" class="rounded mx-auto d-block" alt="" width="50" ><br>Add Student</div>
+    </div>
+    <div class="col">
+      <div class="p-3 border bg-light"><img src="{% static 'img/details.png'%}" class="rounded mx-auto d-block" alt="" width="50%" ><br>Custom column padding</div>
+    </div>
+    <div class="col">
+        <div class="p-3 border bg-light">Custom column padding</div>
+    </div>
+    <div class="col">
+        <div class="p-3 border bg-light">Custom column padding</div>
+    </div>
+  </div>
+</div>-->
+{% endblock content %}

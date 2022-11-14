@@ -1,0 +1,4 @@
+ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUse
+ .\venv\Scripts\Activate.ps1
+ Django:4.0.3
+ Pillow:9.3.0

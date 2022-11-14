@@ -1,0 +1,75 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+<div class="container emp-profile pb-3">
+ {% for message in messages %}
+        <p class="alert alert-success mt-3">{{message}}</p>
+        {% endfor %}
+    
+    <div class="row">
+      <div class="col-md-4">
+         <form
+    method="POST"
+    action="."
+    class="needs-validation"
+    enctype="multipart/form-data"
+  >
+  {% csrf_token %}
+        
+        <h5 class="text-muted">Add Class:</h5>
+        <br />
+        <div class="m-1">
+          <label class="text-muted"><small>Degree:</small></label>
+          <input
+            class="form-control"
+            name="degree"
+            type="text"
+            placeholder="Degree"
+          />
+        </div>
+        <div class="mt-3">
+          <button type="submit" class="btn btn-outline-success m-1">Add</button>
+          <a href=""
+            ><button type="button" class="btn btn-outline-danger m-1">
+              Cancel
+            </button></a
+          >
+        </div>
+      </form>
+      </div>
+
+      <div class="col-md-4">
+        <form
+    method="POST"
+    action="."
+    class="needs-validation"
+    enctype="multipart/form-data"
+  >
+  {% csrf_token %}
+        <h5 class="text-muted">Add Subject:</h5>
+        <br />
+
+        <div class="m-1">
+          <label class="text-muted"><small>Subject:</small></label>
+          <input
+            class="form-control"
+            name="subject"
+            type="text"
+            placeholder="Degree"
+          />
+        </div>
+
+        <div class="mt-3">
+          <button type="submit" class="btn btn-outline-success m-1">Add</button>
+          <a href=""
+            ><button type="button" class="btn btn-outline-danger m-1">
+              Cancel
+            </button></a
+          >
+        </div>
+      </form>
+      </div>
+
+      <div class="col-md-4"></div>
+    </div>
+  </form>
+</div>
+{% endblock content %}
