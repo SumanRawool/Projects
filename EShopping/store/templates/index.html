@@ -1,4 +1,4 @@
-{% extends 'base.html' %}{% load static %} {%block content%}
+{% extends 'base.html' %}{% load static %} {% load custom_filter %} {%block content%}
 {% load cart %}
 <div class="row">
     <!--filer-->
@@ -40,7 +40,7 @@
                 </div>
                 <div class="text-center">
                     <p class="text-capitalize mt-3 mb-1">{{product.name}}</p>
-                    <span class="fw-bold d-block">{{product.price}}</span>
+                    <span class="fw-bold d-block">{{product.price|currency}}</span>
                     <!--{{ product | is_in_cart:request.session.cart }}-->
 
 
