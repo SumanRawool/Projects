@@ -43,15 +43,28 @@
                 >Store</a
                 >
             </li>
-             <div class="order-lg-2 nav-btns">
-            <button  type = "button" class = "  btn position-relative">
-                <a href="cart">
-                    <i  class = "fa fa-shopping-cart"></i></a>
-                    <span  class = "position-absolute top-0 start-100 translate-middle badge">5</span>
+            <li class="nav-item px-2 py-2 border-0">
+                <a class="nav-link text-uppercase text-dark" href="/cart"
+                >Cart<span class="badge bg-info">{{request.session.cart.keys|length}}</span></a
+                >
+            </li>
 
-            </button>
-            </div>
+
+
+<!--             <div class="order-lg-2 nav-btns">-->
+<!--            <button  type = "button" class = "  btn position-relative">-->
+<!--                <a href="cart">-->
+<!--                    <i  class = "fa fa-shopping-cart"></i></a>-->
+<!--                    <span  class = "position-absolute top-0 start-100 translate-middle badge">5</span>-->
+
+<!--            </button>-->
+<!--            </div>-->
             {% if request.session.customer %}
+            <li class="nav-item px-2 py-2 border-0">
+                <a class="nav-link text-uppercase text-dark" href="/orders"
+                >Order</a
+                >
+            </li>
             <li class="nav-item px-2 py-2 border-0">
                 <a class="nav-link text-uppercase text-dark" href="/logout"
                 >logout</a
