@@ -14,3 +14,4 @@ Pillow==9.3.0
 sqlparse==0.4.3
 tzdata==2022.6
 Werkzeug==2.2.2
+==========
