@@ -16,7 +16,7 @@ Courses
         {% for course in courses%}
         <div class="col mx-auto">
             <div class="card mx-auto" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
+                <img src="{{course.thumbnail.url}}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">{{course.name}}</h5>
                     <p class="card-text m-0 p-0">
@@ -33,7 +33,7 @@ Courses
                 <div class="card-footer p-0 ">
                     <div class="row g-0 ">
                         <div class="col-6 d-grid border"><a href="" class="btn btn-light btn-block">Enroll Now</a></div>
-                        <div class="col-6 d-grid border"><a href="" class="btn btn-light btn-block">Show More</a></div>
+                        <div class="col-6 d-grid border"><a href="/course/{{course.slug}}" class="btn btn-light btn-block">Show More</a></div>
                     </div>
                 </div>
             </div>
