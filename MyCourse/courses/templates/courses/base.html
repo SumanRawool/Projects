@@ -34,15 +34,18 @@
       </ul>
 <!--        left -->
       <ul class="navbar-nav ms-auto">
+          {% if request.user.is_authenticated %}
+          <li class="nav-item">
+          <a class="nav-link " href="/logout" tabindex="-1" aria-disabled="true">Logout</a>
+        </li>
+          {% else %}
         <li class="nav-item">
           <a class="nav-link" href="/login">Login</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/signup">Signup</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link " href="#" tabindex="-1" aria-disabled="true">Logout</a>
-        </li>
+        {% endif %}
       </ul>
     </div>
   </div>

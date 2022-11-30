@@ -1,14 +1,17 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from django.shortcuts import HttpResponse
 from courses.models import Course, Video
-from courses.forms import RegistrationForm
+from django.contrib.auth import logout
+from courses.forms import RegistrationForm,LoginForm
 from django.views import View
 
+
 class SignupView(View):
-    def get(self,request):
+    def get(self, request):
         form = RegistrationForm()
         return render(request, template_name="courses/signup.html", context={'form': form})
-    def post(self,request):
+
+    def post(self, request):
         form = RegistrationForm(request.POST)
 
         if (form.is_valid()):
@@ -17,5 +20,21 @@ class SignupView(View):
                 return redirect('login')
         return render(request, template_name="courses/signup.html", context={'form': form})
 
-def login(request):
-    return render(request,template_name="courses/login.html")
+class LoginView(View):
+    def get(self,request):
+        form=LoginForm()
+        context={
+            "form":form
+        }
+        return render(request, template_name="courses/login.html",context=context)
+    def post(self,request):
+        form = LoginForm(request,data=request.POST)
+        context = {
+            "form": form
+        }
+        if(form.is_valid()):
+            return redirect('home')
+        return render(request, template_name="courses/login.html", context=context)
+def signout(request):
+    logout(request)
+    return redirect("home")
