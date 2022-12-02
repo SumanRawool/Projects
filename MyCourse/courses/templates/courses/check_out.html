@@ -7,10 +7,6 @@ Signup
 
 <div class="container">
     <br>
-    {% if order is not None %}
-    <p class="">{{order}}</p>
-    <p class="">{{payment}}</p>
-    {% endif %}
     <br>
         <div class="row">
             <div class="col mr-auto">
@@ -41,5 +37,38 @@ Signup
             </div>
         </div>
 </div>
+
+{% if order is not None %}
+   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var options = {
+    "key": "rzp_test_kKLpUlumm9RDcL", // Enter the Key ID generated from the Dashboard
+    "name": "MyCourse",
+    "description": "Payment for {{course.name}}",
+    "image": "https://cdn.iconscout.com/icon/free/png-256/shazam-1-722737.png",
+    "order_id": "{{order.id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "callback_url": "http://localhost:8000/verify_payment",
+    "prefill": {
+        "name": "{{user.first_name}}",
+        "email": "{{user.email}}",
+    },
+
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+rzp1.open();
+</script>
+{% endif %}
+{% if error is not None %}
+<script>
+    window.onload=()=>{
+    alert("{{error}}")
+    }
+</script>
+{% endif %}
+
+
 
 {% endblock %}

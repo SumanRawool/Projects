@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import HttpResponse
-from courses.views import home, coursePage,SignupView,LoginView,signout,checkout
+from courses.views import home, coursePage,SignupView,LoginView,signout,checkout,verifyPayment
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -27,6 +27,7 @@ urlpatterns = [
     path('login', LoginView.as_view(), name='login'),
     path('course/<str:slug>', coursePage, name='coursepage'),
     path('check-out/<str:slug>', checkout, name='checkout'),
+    path('verify_payment', verifyPayment, name='verify_payment'),
 
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
