@@ -40,6 +40,9 @@
       <ul class="navbar-nav ms-auto">
           {% if request.user.is_authenticated %}
           <li class="nav-item">
+          <a class="nav-link " href="/my-courses" tabindex="-1" aria-disabled="true">My Courses</a>
+        </li>
+          <li class="nav-item">
           <a class="nav-link " href="/logout" tabindex="-1" aria-disabled="true">Logout</a>
         </li>
           {% else %}

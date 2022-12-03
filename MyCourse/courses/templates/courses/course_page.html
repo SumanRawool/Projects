@@ -12,6 +12,9 @@ Courses
 
 {% block content %}
 <style>
+.no-preview{
+    cursor:not-allowed;
+}
 a{
 color:rgb(61,59,59);
 }
@@ -54,8 +57,11 @@ color:rgb(255,255,255);
                 <!--    Lecture list        -->
                 <div class="col-3">
                     <ul id="video_list" class="list-group overflow-y-scroll">
+                        {% is_enrolled request course as enrolled %}
                         {% for v in videos%}
-                        <li class="list-group-item {% if v == video %} active-video{% endif %}" ><a class="{% if v == video %} active-video-link{% endif %} text-decoration-none" href="?lecture={{v.serial_number}}">{{v}}</a></li>
+                        <li class="list-group-item {% if v == video %} active-video{% endif %}" ><a class="
+                        {% if not enrolled and not v.is_preview %} text-muted no-preview{% endif %}
+                         {% if v == video %} active-video-link{% endif %} text-decoration-none" href="?lecture={{v.serial_number}}">{{v}}</a></li>
                         {% endfor %}
 
 

@@ -9,6 +9,8 @@ Courses
     font-size:20px:
     }
 
+
+
 </style>
 <div class="container-fluid">
     <br>
@@ -20,7 +22,7 @@ Courses
                 <div class="card-body">
                     <h5 class="card-title">{{course.name}}</h5>
                     <p class="card-text m-0 p-0">
-                    Save {{course.discount}}%
+                        Save {{course.discount}}%
                         <br>
                         <span class="price">
                             <del>{{course.price | rupee}}</del>
@@ -31,10 +33,20 @@ Courses
 
                 </div>
                 <div class="card-footer p-0 ">
+                    {% is_enrolled request course as enrolled %}
+
                     <div class="row g-0 ">
-                        <div class="col-6 d-grid border"><a href="/check-out/{{course.slug}}" class="btn btn-light btn-block">Enroll Now</a></div>
-                        <div class="col-6 d-grid border"><a href="/course/{{course.slug}}" class="btn btn-light btn-block">Show More</a></div>
+                        {% if enrolled %}
+                        <div class="col border-right text-center btn-block"><a href="/course/{{course.slug}}" class="btn btn-light  ">Start Course </a>
+                        </div>
+                        {% else %}
+                        <div class="col-6 d-grid border"><a href="/check-out/{{course.slug}}"
+                                                            class="btn btn-light btn-block">Enroll Now</a></div>
+                        <div class="col-6 d-grid border"><a href="/course/{{course.slug}}"
+                                                            class="btn btn-light btn-block">Show More</a></div>
+                        {% endif %}
                     </div>
+
                 </div>
             </div>
         </div>
