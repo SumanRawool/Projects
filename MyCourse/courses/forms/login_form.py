@@ -15,7 +15,6 @@ class LoginForm(AuthenticationForm):
             user=User.objects.get(email=email)
             result=authenticate(username=user.username,password=password)
             if(result is not None):
-                login(self.request,result)
                 return result
             else:
                 raise ValidationError("Email or Password invalid")

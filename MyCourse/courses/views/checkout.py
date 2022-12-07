@@ -5,10 +5,10 @@ from time import time
 import razorpay
 from mycourse.settings import *
 from django.views.decorators.csrf import csrf_exempt
-
+from django.contrib.auth.decorators import login_required
 client = razorpay.Client(auth=(KEY_ID, KEY_SECRET))
 
-
+@login_required(login_url='/login')
 def checkout(request, slug):
     course = Course.objects.get(slug=slug)
     user = None
@@ -27,6 +27,10 @@ def checkout(request, slug):
             pass
         if error is None:
             amount = int((course.price - (course.price * course.discount * 0.01)) * 100)
+            if amount == 0:
+                userCourse = UserCourse(user=payment.user, course=payment.course)
+                userCourse.save()
+                return 
             currency = "INR"
             notes = {
                 "email": user.email,

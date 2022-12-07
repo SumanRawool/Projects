@@ -2,9 +2,20 @@ from django.shortcuts import render, redirect
 from django.shortcuts import HttpResponse
 from courses.models import Course, Video, UserCourse
 from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView
+from django.utils.decorators import method_decorator
 
 
-@login_required(login_url="login")
+@method_decorator(login_required(login_url='login'), name='dispatch')
+class MyCoursesList(ListView):
+    template_name = 'courses/my_courses.html'
+    context_object_name = 'user_courses'
+
+    def get_queryset(self):
+        return UserCourse.objects.filter(user=self.request.user)
+
+
+'''@login_required(login_url="login")
 def my_courses(request):
     user = request.user
     user_course = UserCourse.objects.filter(user=user)
@@ -12,6 +23,7 @@ def my_courses(request):
         'user_courses': user_course
     }
     return render(request=request, template_name="courses/my_courses.html",context=context)
+'''
 
 
 def coursePage(request, slug):
