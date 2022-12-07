@@ -30,8 +30,19 @@ def coursePage(request, slug):
     course = Course.objects.get(slug=slug)
     serial_number = request.GET.get('lecture')
     videos = course.video_set.all().order_by("serial_number")
+    next_lecture=2
+    previous_lecture=None
     if serial_number is None:
         serial_number = 1
+    else:
+        next_lecture=int(serial_number)+1
+        if len(videos)< next_lecture:
+            next_lecture=None
+        previous_lecture = int(serial_number) - 1
+
+
+
+
     video = Video.objects.get(serial_number=serial_number, course=course)
     if video.is_preview is False:
         if request.user.is_authenticated is False:
@@ -46,6 +57,8 @@ def coursePage(request, slug):
     context = {
         "course": course,
         "video": video,
-        "videos": videos
+        "videos": videos,
+        "next_lecture":next_lecture,
+        "previous_lecture":previous_lecture
     }
     return render(request, template_name="courses/course_page.html", context=context)
