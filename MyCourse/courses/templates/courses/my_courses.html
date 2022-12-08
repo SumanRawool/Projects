@@ -6,9 +6,9 @@ Signup
 {% block content %}
 
 <div class="container">
-   <p class="display-6">My Courses</p>
-<hr>
-   <div class="row">
+    <p class="display-6">My Courses</p>
+    <hr>
+    <div class="row">
         {% for uc in user_courses%}
         <div class="col mx-auto">
             <div class="card mx-auto" style="width: 18rem;">
@@ -22,7 +22,8 @@ Signup
 
                     <div class="row g-0 ">
 
-                        <div class="col border-right text-center btn-block"><a href="/course/{{uc.course.slug}}" class="btn btn-light  ">Start Course </a>
+                        <div class="col border-right text-center btn-block"><a href="/course/{{uc.course.slug}}"
+                                                                               class="btn btn-light  ">Start Course </a>
                         </div>
 
                     </div>

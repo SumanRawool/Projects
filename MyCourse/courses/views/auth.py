@@ -24,7 +24,7 @@ class LoginView(FormView):
 
     def form_valid(self, form):
         login(self.request, form.cleaned_data)
-        next_page=self.request.GET.get('next')
+        next_page = self.request.GET.get('next')
         if next_page is not None:
             return redirect(next_page)
         return super().form_valid(form)

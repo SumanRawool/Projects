@@ -8,14 +8,14 @@ Signup
 <div class="container">
     <br>
     <br>
-        <div class="row">
-            <div class="col mr-auto">
+    <div class="row">
+        <div class="col mr-auto">
             <div class="card ml-auto" style="width: 18rem;">
                 <img src="{{course.thumbnail.url}}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">{{course.name}}</h5>
                     <p class="card-text m-0 p-0">
-                    Save {{course.discount}}%
+                        Save {{course.discount}}%
                         <br>
                         <span class="price">
                             <del>{{course.price | rupee}}</del>
@@ -27,19 +27,46 @@ Signup
                 </div>
             </div>
         </div>
-            <div class="col">
-                <div>
-                    <p class="display-5">{{course.name}}</p>
-                    <hr>
-                    <p class="display-5">Payable Amount : <b>{% cal_sellprice course.price course.discount as value %} {{value | rupee}}</b></p>
-                    <a class="btn btn-light border" href="?action=create_payment">Continue to Payment</a>
+        <div class="col">
+            <div>
+                <p class="display-5">{{course.name}}</p>
+                <hr>
+                {% if coupon %}
+                <p class="alert alert-light border">
+                    Coupon Code Applied
+                    You Have Got {{coupon.discount}}% Discount
+                </p>
+                <p class="display-5">Payable Amount : <b>{% cal_sellprice course.price coupon.discount as value %}
+                    {{value | rupee}}</b></p>
+                <a class="btn btn-light border" href="?action=create_payment&coupon-code={{coupon.code}}">Continue to Payment</a>
+                {% else %}
+                <p class="display-5">Payable Amount : <b>{% cal_sellprice course.price course.discount as value %}
+                    {{value | rupee}}</b></p>
+                <a class="btn btn-light border" href="?action=create_payment">Continue to Payment</a>
+                {% endif %}
+
+            </div>
+            <br>
+            <div class="border p-4 rounded border-success">
+                {% if coupon_code_message %}
+                <div class="alert alert-info">
+                    {{ coupon_code_message }}
                 </div>
+                {% endif %}
+                <p>Coupon Code:</p>
+                <form action="" method="get">
+                    <div class="col-lg-5">
+                        <input type="text" name="coupon-code" class="form-control" id=""><br>
+                        <input type="submit" value="Apply" class="btn btn-primary">
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
 </div>
 
 {% if order is not None %}
-   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
 var options = {
     "key": "rzp_test_kKLpUlumm9RDcL", // Enter the Key ID generated from the Dashboard
@@ -59,6 +86,8 @@ var options = {
 };
 var rzp1 = new Razorpay(options);
 rzp1.open();
+
+
 </script>
 {% endif %}
 {% if error is not None %}
@@ -66,9 +95,10 @@ rzp1.open();
     window.onload=()=>{
     alert("{{error}}")
     }
+
+
 </script>
 {% endif %}
-
 
 
 {% endblock %}

@@ -35,3 +35,9 @@ class Prerequisite(CourseProperty):
 
 class Learning(CourseProperty):
     pass
+
+
+class CouponCode(models.Model):
+    code = models.CharField(max_length=6)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='coupons')
+    discount = models.IntegerField(default=0)
